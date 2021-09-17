@@ -8,12 +8,19 @@
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>
 
+#include <registerbank.h>
 #include <instruction.h>
+#include <add.h>
+#include <addi.h>
+#include <sub.h>
+#include <subi.h>
+#include <b.h>
+#include <beq.h>
 
 class FileParser
 {
 public:
-    FileParser();
+    FileParser(RegisterBank *registerBank);
     QList<Instruction*> parse(QString fileName);
 
 private:
@@ -21,6 +28,7 @@ private:
     Instruction* parseLine(QString textLine);
 
     QRegularExpressionValidator *validator;
+    RegisterBank *registerBank;
 };
 
 #endif // FILEPARSER_H

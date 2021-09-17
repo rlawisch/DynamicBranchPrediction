@@ -17,12 +17,16 @@ MainWindow::~MainWindow()
 void MainWindow::on_readFileButton_clicked()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open assembly file"), "", tr("Assembly files (*.asm *.txt"));
-    FileParser *fileParser = new FileParser();
-    QList<Instruction*> instructionList = fileParser->parse(fileName);
-    delete fileParser;
 
-    this->registerBank = new RegisterBank();
-    this->programMemory = new ProgramMemory(instructionList);
-    this->pipeline = new Pipeline(programMemory);
+    if(fileName != "")
+    {
+        this->registerBank = new RegisterBank();
+        FileParser *fileParser = new FileParser(this->registerBank);
+        QList<Instruction*> instructionList = fileParser->parse(fileName);
+        delete fileParser;
+
+        this->programMemory = new ProgramMemory(instructionList);
+        this->pipeline = new Pipeline(programMemory);
+    }
 }
 
