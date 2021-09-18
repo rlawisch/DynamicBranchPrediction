@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>compile</file>
+        <file>load</file>
+        <file>run</file>
+        <file>save</file>
+        <file>stats</file>
+    </qresource>
+</RCC>
