@@ -10,25 +10,25 @@ FileParser::FileParser(RegisterBank *registerBank)
     this->registerBank = registerBank;
 }
 
-QList<Instruction*> FileParser::parse(QString fileName)
+QList<Instruction*> FileParser::parse(QString code)
 {
     QList<Instruction*> instructionList;
-    QFile inputFile(fileName);
-    if (inputFile.open(QIODevice::ReadOnly))
+
+    uint lineCounter = 0;
+
+    QStringList splited = code.split('\n');
+    QStringListIterator it(splited);
+
+    while(it.hasNext())
     {
-        unsigned int lineCounter = 0;
-        QTextStream in(&inputFile);
-        while (!in.atEnd())
+        QString line = it.next();
+        if((lineCounter++ < 256) && (this->isValidLine(line)))
         {
-            QString line = in.readLine();
-            if((lineCounter++ < 256) && (this->isValidLine(line)))
-            {
-                Instruction* instructionRead = this->parseLine(line);
-                instructionList.append(instructionRead);
-            }
+            Instruction* instructionRead = this->parseLine(line);
+            instructionList.append(instructionRead);
         }
-        inputFile.close();
     }
+
     return instructionList;
 }
 
