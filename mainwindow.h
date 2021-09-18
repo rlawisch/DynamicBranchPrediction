@@ -2,16 +2,16 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QToolBar>
+#include <QPlainTextEdit>
+#include <QMessageBox>
 #include <QFileDialog>
+#include <QDebug>
 
 #include <fileparser.h>
 #include <programmemory.h>
 #include <registerbank.h>
 #include <pipeline.h>
-
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
@@ -19,13 +19,21 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+
+signals:
+    void fileOpened(QString text);
+
+public slots:
+    void saveToFile();
+    void loadFile();
+    void compileCode();
+    void runCode();
 
 private slots:
     void on_readFileButton_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    QPlainTextEdit *textEdit_;
     ProgramMemory* programMemory;
     RegisterBank *registerBank;
     Pipeline* pipeline;
