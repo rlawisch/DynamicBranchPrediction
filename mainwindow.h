@@ -29,9 +29,6 @@ public slots:
     void compileCode();
     void runCode();
 
-private slots:
-    void on_readFileButton_clicked();
-
 private:
     QPlainTextEdit *textEdit_;
     ProgramMemory* programMemory;
