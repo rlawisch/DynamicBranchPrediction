@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     textEdit_->setStyleSheet("padding: 10px;");
 
     QToolBar *toolBar = new QToolBar(this);
-    toolBar->setStyleSheet("QToolBar{spacing:10px;}");
+    toolBar->setStyleSheet("QToolBar{spacing: 6px;}");
 
     QAction *save    = toolBar->addAction(QIcon(":/images/save"   ), "Save"      );
     QAction *load    = toolBar->addAction(QIcon(":/images/load"   ), "Load"      );
@@ -17,10 +17,20 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     toolBar->addSeparator();
     QAction *stats   = toolBar->addAction(QIcon(":/images/stats"  ), "Statistics");
 
+    run->setEnabled(false);
+
+    buttons.insert("save"   , save   );
+    buttons.insert("load"   , load   );
+    buttons.insert("compile", compile);
+    buttons.insert("run"    , run    );
+    buttons.insert("stats"  , stats  );
+
     connect(save   , SIGNAL(triggered()), this, SLOT(saveToFile() ));
     connect(load   , SIGNAL(triggered()), this, SLOT(loadFile()   ));
     connect(compile, SIGNAL(triggered()), this, SLOT(compileCode()));
     connect(run    , SIGNAL(triggered()), this, SLOT(runCode()    ));
+
+    connect(textEdit_, SIGNAL(textChanged()), this, SLOT(updateRunButton()));
 
     this->setCentralWidget(textEdit_);
     this->addToolBar(toolBar);
@@ -76,9 +86,21 @@ void MainWindow::compileCode()
 
     this->programMemory = new ProgramMemory(instructionList);
     this->pipeline = new Pipeline(programMemory);
+
+    compiledCode = textEdit_->toPlainText();
+
+    buttons["run"]->setEnabled(true);
 }
 
 void MainWindow::runCode()
 {
 
+}
+
+void MainWindow::updateRunButton()
+{
+    if(compiledCode == textEdit_->toPlainText())
+        buttons["run"]->setEnabled(true);
+    else
+        buttons["run"]->setEnabled(false);
 }

@@ -29,10 +29,21 @@ public slots:
     void compileCode();
     void runCode();
 
+    void updateRunButton();
+
+
+
+
+
+
 private:
     QPlainTextEdit *textEdit_;
     ProgramMemory* programMemory;
     RegisterBank *registerBank;
     Pipeline* pipeline;
+
+    QMap<QString, QAction*> buttons;
+
+    QString compiledCode;
 };
 #endif // MAINWINDOW_H
