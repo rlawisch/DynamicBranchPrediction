@@ -1,7 +1,8 @@
 #include "subi.h"
 
-SubI::SubI(unsigned char destination, unsigned char operator1, unsigned char integer, RegisterBank* registerBank) : Instruction("SUBI", destination, registerBank)
+SubI::SubI(QString destination, QString operator1, unsigned char integer, RegisterBank* registerBank) : Instruction("SUBI", registerBank)
 {
+    this->destination = destination;
     this->operator1 = operator1;
     this->integer = integer;
 }

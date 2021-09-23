@@ -1,16 +1,22 @@
 #ifndef REGISTERBANK_H
 #define REGISTERBANK_H
 
+#include <QString>
+#include <QMap>
+#include <QRegularExpression>
+#include <QRegularExpressionValidator>
 
 class RegisterBank
 {
 public:
     RegisterBank();
-    unsigned char getRegister(unsigned char address);
-    void setRegister(unsigned char address, unsigned char value);
+    unsigned char getRegister(QString address);
+    void setRegister(QString address, unsigned char value);
+    bool isValidRegisterAddress(QString address);
 
 private:
-    unsigned char registers[32];
+    QMap<QString, unsigned char> registers;
+    QRegularExpressionValidator *addressValidator;
 };
 
 #endif // REGISTERBANK_H

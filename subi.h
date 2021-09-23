@@ -6,13 +6,15 @@
 class SubI : public Instruction
 {
 public:
-    SubI(unsigned char destination, unsigned char operator1, unsigned char integer, RegisterBank* registerBank);
+    SubI(QString destination, QString operator1, unsigned char integer, RegisterBank* registerBank);
     void runID();
     void runEX();
     void runWB();
 
 private:
-    unsigned char operator1, integer;
+    QString destination;
+    QString operator1;
+    unsigned char integer;
     unsigned char operator1Content;
     unsigned char result;
 };

@@ -6,13 +6,15 @@
 class AddI : public Instruction
 {
 public:
-    AddI(unsigned char destination, unsigned char operator1, unsigned char integer, RegisterBank* registerBank);
+    AddI(QString destination, QString operator1, unsigned char integer, RegisterBank* registerBank);
     void runID();
     void runEX();
     void runWB();
 
 private:
-    unsigned char operator1, integer;
+    QString destination;
+    QString operator1;
+    unsigned char integer;
     unsigned char operator1Content;
     unsigned char result;
 };

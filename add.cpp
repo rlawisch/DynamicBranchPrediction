@@ -1,7 +1,8 @@
 #include "add.h"
 
-Add::Add(unsigned char destination, unsigned char operator1, unsigned char operator2, RegisterBank* registerBank) : Instruction("ADD", destination, registerBank)
+Add::Add(QString destination, QString operator1, QString operator2, RegisterBank* registerBank) : Instruction("ADD", registerBank)
 {
+    this->destination = destination;
     this->operator1 = operator1;
     this->operator2 = operator2;
 }

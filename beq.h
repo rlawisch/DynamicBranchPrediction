@@ -6,13 +6,14 @@
 class Beq : public Instruction
 {
 public:
-    Beq(unsigned char destination, unsigned char operator1, unsigned char operator2, RegisterBank* registerBank);
+    Beq(QString operator1, QString operator2, int destination, RegisterBank* registerBank);
     void runID();
     void runEX();
     void runWB();
 
 private:
-    unsigned char operator1, operator2;
+    QString operator1, operator2;
+    int destination;
     unsigned char operator1Content, operator2Content;
     bool shouldBranch;
 };

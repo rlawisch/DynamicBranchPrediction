@@ -1,7 +1,8 @@
 #include "b.h"
 
-B::B(unsigned char destination, RegisterBank* registerBank) : Instruction("B", destination, registerBank)
+B::B(int destination, RegisterBank* registerBank) : Instruction("B", registerBank)
 {
+    this->destination = destination;
 }
 
 void B::runID()

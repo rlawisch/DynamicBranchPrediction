@@ -1,17 +1,16 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
-#include <qstring.h>
+#include <QString>
 
 #include "registerbank.h"
 
 class Instruction
 {
 public:
-    Instruction(QString opcode, unsigned char destination, RegisterBank* registerBank)
+    Instruction(QString opcode, RegisterBank* registerBank)
     {
         this->opcode = opcode;
-        this->destination = destination;
         this->registerBank = registerBank;
     }
 
@@ -19,14 +18,8 @@ public:
     virtual void runEX() = 0;
     virtual void runWB() = 0;
 
-    unsigned char getDestination()
-    {
-        return this->destination;
-    }
-
 protected:
     QString opcode;
-    unsigned char destination;
     RegisterBank* registerBank;
 };
 
