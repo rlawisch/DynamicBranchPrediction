@@ -94,7 +94,7 @@ void MainWindow::compileCode()
 
 void MainWindow::runCode()
 {
-
+    this->pipeline->run();
 }
 
 void MainWindow::updateRunButton()
