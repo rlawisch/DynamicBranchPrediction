@@ -7,7 +7,8 @@ Pipeline::Pipeline(ProgramMemory* programMemory)
 
 void Pipeline::step()
 {
-    this->programCounter++;
+    ProgramCounter& pc = ProgramCounter::GetInstance();
+    pc.Add(1);
 
     if(this->instructionWB)
         this->instructionWB->runWB();
@@ -24,7 +25,7 @@ void Pipeline::step()
 
     this->instructionID = this->instructionIF;
 
-    this->instructionIF = this->programMemory->fetch(programCounter);
+    this->instructionIF = this->programMemory->fetch(pc.Get());
 }
 
 void Pipeline::run()
