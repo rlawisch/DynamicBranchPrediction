@@ -2,6 +2,7 @@
 #define BEQ_H
 
 #include "instruction.h"
+#include "programcounter.h"
 
 class Beq : public Instruction
 {

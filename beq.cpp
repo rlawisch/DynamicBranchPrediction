@@ -16,9 +16,10 @@ void Beq::runID()
 void Beq::runEX()
 {
     this->shouldBranch = this->operator1Content == this->operator2Content;
+    if (this->shouldBranch)
+            ProgramCounter::GetInstance().Set(this->destination);
 }
 
 void Beq::runWB()
 {
-    //registerBank->setRegister(this->destination, this->result);
 }
