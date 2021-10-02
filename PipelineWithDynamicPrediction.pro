@@ -17,6 +17,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     pipeline.cpp \
+    programcounter.cpp \
     programmemory.cpp \
     registerbank.cpp \
     sub.cpp \
@@ -31,6 +32,7 @@ HEADERS += \
     instruction.h \
     mainwindow.h \
     pipeline.h \
+    programcounter.h \
     programmemory.h \
     registerbank.h \
     sub.h \
