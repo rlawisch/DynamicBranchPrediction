@@ -22,3 +22,8 @@ void ProgramCounter::Set(int x)
 {
     this->pc = x;
 }
+
+void ProgramCounter::Reset()
+{
+    this->pc = 0;
+}

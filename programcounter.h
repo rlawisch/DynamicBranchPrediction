@@ -13,6 +13,7 @@ public:
     int Get();
     void Add(int x);
     void Set(int x);
+    void Reset();
 
 private:
     // private constructor to ensure singleton
