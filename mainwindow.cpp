@@ -94,7 +94,6 @@ void MainWindow::compileCode()
 
 void MainWindow::runCode()
 {
-
     this->pipeline->run();
 }
 
