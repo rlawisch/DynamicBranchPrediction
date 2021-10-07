@@ -3,6 +3,7 @@
 
 #include "instruction.h"
 #include "programmemory.h"
+#include "programcounter.h"
 
 class Pipeline
 {
@@ -13,7 +14,6 @@ public:
 
 private:
     bool isRunning = false;
-    unsigned char programCounter = 0;
     ProgramMemory* programMemory;
     Instruction *instructionIF, *instructionID, *instructionEX, *instructionMEM, *instructionWB;
 };
