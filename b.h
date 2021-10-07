@@ -2,6 +2,7 @@
 #define B_H
 
 #include "instruction.h"
+#include "programcounter.h"
 
 class B : public Instruction
 {

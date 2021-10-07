@@ -15,4 +15,5 @@ void B::runEX()
 
 void B::runWB()
 {
+   ProgramCounter::GetInstance().Set(this->destination);
 }
