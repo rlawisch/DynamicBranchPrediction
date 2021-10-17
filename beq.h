@@ -3,6 +3,7 @@
 
 #include "instruction.h"
 #include "programcounter.h"
+#include "twobitpredictor.h"
 
 class Beq : public Instruction
 {

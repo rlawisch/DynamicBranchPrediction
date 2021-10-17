@@ -21,7 +21,14 @@ void Beq::ex()
 void Beq::wb()
 {
     if (this->shouldBranch)
+    {
         ProgramCounter::GetInstance()->Set(this->destination);
+        TwoBitPredictor::GetInstance()->incrementForLine(this->lineNumber);
+    }
+    else
+    {
+        TwoBitPredictor::GetInstance()->decrementForLine(this->lineNumber);
+    }
 }
 
 int Beq::getDestination()
