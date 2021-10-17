@@ -4,6 +4,7 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     this->usePredictions = true;
+    this->statistics = Statistics::GetInstance();
 
     textEdit_ = new QPlainTextEdit(this);
     textEdit_->setStyleSheet("padding: 10px;");
@@ -31,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(load   , SIGNAL(triggered()), this, SLOT(loadFile()   ));
     connect(compile, SIGNAL(triggered()), this, SLOT(compileCode()));
     connect(run    , SIGNAL(triggered()), this, SLOT(runCode()    ));
+    connect(stats  , SIGNAL(triggered()), this, SLOT(showStats()  ));
 
     connect(textEdit_, SIGNAL(textChanged()), this, SLOT(updateRunButton()));
 
@@ -104,4 +106,11 @@ void MainWindow::updateRunButton()
         buttons["run"]->setEnabled(true);
     else
         buttons["run"]->setEnabled(false);
+}
+
+void MainWindow::showStats()
+{
+    QList<InstructionInstance> instructions = this->statistics->GetInstructions();
+    int instructionsAmount = this->statistics->GetInstructionAmount();
+    int invalidInstructions = this->statistics->GetInvalidInstructionAmount();
 }

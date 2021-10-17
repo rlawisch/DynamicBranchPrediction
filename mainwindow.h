@@ -12,6 +12,7 @@
 #include <programmemory.h>
 #include <registerbank.h>
 #include <pipeline.h>
+#include <statistics.h>
 
 class MainWindow : public QMainWindow
 {
@@ -28,6 +29,7 @@ public slots:
     void loadFile();
     void compileCode();
     void runCode();
+    void showStats();
 
     void updateRunButton();
 
@@ -35,6 +37,7 @@ private:
     QPlainTextEdit *textEdit_;
     ProgramMemory* programMemory;
     Pipeline* pipeline;
+    Statistics* statistics;
     bool usePredictions;
 
     QMap<QString, QAction*> buttons;
