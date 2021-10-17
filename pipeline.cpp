@@ -1,14 +1,15 @@
 #include "pipeline.h"
 
-Pipeline::Pipeline(ProgramMemory* programMemory)
+Pipeline::Pipeline(ProgramMemory* programMemory, bool usePredictions)
 {
     this->programMemory = programMemory;
+    this->usePredictions = usePredictions;
+    this->programCounter = ProgramCounter::GetInstance();
 }
 
 void Pipeline::step()
 {
-    ProgramCounter* programCounter = ProgramCounter::GetInstance();
-    programCounter->Add(1);
+    this->programCounter->Add(1);
 
     if(this->instructionWB)
         this->instructionWB->runWB();
@@ -25,7 +26,7 @@ void Pipeline::step()
 
     this->instructionID = this->instructionIF;
 
-    this->instructionIF = this->programMemory->fetch(programCounter->Get());
+    this->instructionIF = this->getNextInstruction();
 }
 
 void Pipeline::run()
@@ -34,4 +35,16 @@ void Pipeline::run()
     {
         this->step();
     }
+}
+
+Instruction* Pipeline::getNextInstruction()
+{
+    if (this->usePredictions &&
+        this->instructionID->getOpcode() == "BEQ" &&
+        TwoBitPredictor::GetInstance()->shouldBranchForLine(this->instructionID->getLineNumber()))
+    {
+        programCounter->Set(((Beq*) this->instructionID)->getDestination());
+    }
+
+    return this->programMemory->fetch(this->programCounter->Get());
 }

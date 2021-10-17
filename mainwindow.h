@@ -31,15 +31,11 @@ public slots:
 
     void updateRunButton();
 
-
-
-
-
-
 private:
     QPlainTextEdit *textEdit_;
     ProgramMemory* programMemory;
     Pipeline* pipeline;
+    bool usePredictions;
 
     QMap<QString, QAction*> buttons;
 
