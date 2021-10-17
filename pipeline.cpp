@@ -11,16 +11,16 @@ void Pipeline::step()
 {
     this->programCounter->Add(1);
 
-    if(this->instructionWB)
+    if(this->instructionWB != nullptr)
     {
         this->instructionWB->runWB();
         if (this->instructionWB->getOpcode().startsWith("B"))
         {
             this->checkInstructionsValidity();
         }
+        int res = Statistics::GetInstance()->GetValidInstructionAmount();
+        res++;
     }
-    else
-        this->isRunning = false;
 
     this->instructionWB = this->instructionMEM;
 
@@ -39,6 +39,7 @@ void Pipeline::step()
 
 void Pipeline::run()
 {
+    this->isRunning = true;
     while(this->isRunning)
     {
         this->step();
@@ -48,6 +49,7 @@ void Pipeline::run()
 Instruction* Pipeline::getNextInstruction()
 {
     if (this->usePredictions &&
+        this->instructionID &&
         this->instructionID->getValidity() &&
         this->instructionID->getOpcode() == "BEQ" &&
         TwoBitPredictor::GetInstance()->shouldBranchForLine(this->instructionID->getLineNumber()))
@@ -56,8 +58,14 @@ Instruction* Pipeline::getNextInstruction()
         beq->setAnticipatedBranch();
         programCounter->Set(beq->getDestination());
     }
+    Instruction* nextInstruction = this->programMemory->fetch(this->programCounter->Get());
 
-    return this->programMemory->fetch(this->programCounter->Get());
+    if (!(nextInstruction || this->instructionEX || this->instructionID || this->instructionIF ||  this->instructionMEM ||  this->instructionWB))
+    {
+        this->isRunning = false;
+    }
+
+    return nextInstruction;
 }
 
 void Pipeline::checkInstructionsValidity()

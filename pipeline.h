@@ -21,7 +21,7 @@ private:
     bool isRunning = false;
     bool usePredictions;
     ProgramMemory* programMemory;
-    Instruction *instructionIF, *instructionID, *instructionEX, *instructionMEM, *instructionWB;
+    Instruction *instructionIF = nullptr, *instructionID = nullptr, *instructionEX = nullptr, *instructionMEM = nullptr, *instructionWB = nullptr;
     ProgramCounter* programCounter;
 };
 
