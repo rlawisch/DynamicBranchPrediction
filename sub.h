@@ -6,7 +6,7 @@
 class Sub : public Instruction
 {
 public:
-    Sub(QString destination, QString operator1, QString operator2);
+    Sub(QString destination, QString operator1, QString operator2, uint lineNumber);
     void id();
     void ex();
     void wb();

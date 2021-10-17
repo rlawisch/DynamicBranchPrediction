@@ -21,9 +21,9 @@ QList<Instruction*> FileParser::parse(QString code)
     while(it.hasNext())
     {
         QString line = it.next();
-        if((lineCounter++ < 256) && (this->isValidLine(line)))
+        if(lineCounter && (this->isValidLine(line)))
         {
-            Instruction* instructionRead = this->parseLine(line);
+            Instruction* instructionRead = this->parseLine(line, lineCounter);
             instructionList.append(instructionRead);
         }
     }
@@ -37,33 +37,33 @@ bool FileParser::isValidLine(QString textLine)
     return (this->validator->validate(textLine, pos) == QValidator::Acceptable);
 }
 
-Instruction* FileParser::parseLine(QString textLine)
+Instruction* FileParser::parseLine(QString textLine, uint lineCounter)
 {
     QStringList tokens = textLine.replace(QRegularExpression("\\s+"), " ").remove(',').split(" ");
 
     if(tokens[0].toUpper().startsWith("ADDI"))
     {
-        return new AddI(tokens[1], tokens[2], tokens[3].toInt());
+        return new AddI(tokens[1], tokens[2], tokens[3].toInt(), lineCounter);
     }
     else if(tokens[0].toUpper().startsWith("ADD"))
     {
-        return new Add(tokens[1], tokens[2], tokens[3]);
+        return new Add(tokens[1], tokens[2], tokens[3], lineCounter);
     }
     else if(tokens[0].toUpper().startsWith("SUBI"))
     {
-        return new SubI(tokens[1], tokens[2], tokens[3].toInt());
+        return new SubI(tokens[1], tokens[2], tokens[3].toInt(), lineCounter);
     }
     else if(tokens[0].toUpper().startsWith("SUB"))
     {
-        return new Sub(tokens[1], tokens[2], tokens[3]);
+        return new Sub(tokens[1], tokens[2], tokens[3], lineCounter);
     }
     else if(tokens[0].toUpper().startsWith("BEQ"))
     {
-        return new Beq(tokens[1], tokens[2], tokens[3].toInt());
+        return new Beq(tokens[1], tokens[2], tokens[3].toInt(), lineCounter);
     }
     else if(tokens[0].toUpper().startsWith("B"))
     {
-        return new B(tokens[1].toInt());
+        return new B(tokens[1].toInt(), lineCounter);
     }
 
     return nullptr;

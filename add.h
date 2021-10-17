@@ -6,7 +6,7 @@
 class Add : public Instruction
 {
 public:
-    Add(QString destination, QString operator1, QString operator2);
+    Add(QString destination, QString operator1, QString operator2, uint lineNumber);
     void id();
     void ex();
     void wb();

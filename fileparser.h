@@ -25,7 +25,7 @@ public:
 
 private:
     bool isValidLine(QString textLine);
-    Instruction* parseLine(QString textLine);
+    Instruction* parseLine(QString textLine, uint lineCounter);
 
     QRegularExpressionValidator *validator;
 };

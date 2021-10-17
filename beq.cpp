@@ -1,6 +1,6 @@
 #include "beq.h"
 
-Beq::Beq(QString operator1, QString operator2, int destination) : Instruction("BEQ")
+Beq::Beq(QString operator1, QString operator2, int destination, uint lineNumber) : Instruction("BEQ", lineNumber)
 {
     this->destination = destination;
     this->operator1 = operator1;

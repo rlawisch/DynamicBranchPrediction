@@ -8,9 +8,10 @@
 class Instruction
 {
 public:
-    Instruction(QString opcode)
+    Instruction(QString opcode, uint lineNumber)
     {
         this->opcode = opcode;
+        this->lineNumber = lineNumber;
         this->registerBank = RegisterBank::GetInstance();
         this->isValid = true;
     }
@@ -39,8 +40,9 @@ public:
     }
 protected:
     QString opcode;
-    RegisterBank* registerBank;
     bool isValid;
+    int lineNumber;
+    RegisterBank* registerBank;
 };
 
 #endif // INSTRUCTION_H

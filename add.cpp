@@ -1,6 +1,6 @@
 #include "add.h"
 
-Add::Add(QString destination, QString operator1, QString operator2) : Instruction("ADD")
+Add::Add(QString destination, QString operator1, QString operator2, uint lineNumber) : Instruction("ADD", lineNumber)
 {
     this->destination = destination;
     this->operator1 = operator1;

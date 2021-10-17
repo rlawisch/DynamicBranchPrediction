@@ -7,7 +7,7 @@
 class B : public Instruction
 {
 public:
-    B(int destination);
+    B(int destination, uint lineNumber);
     void id();
     void ex();
     void wb();

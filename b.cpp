@@ -1,6 +1,6 @@
 #include "b.h"
 
-B::B(int destination) : Instruction("B")
+B::B(int destination, uint lineNumber) : Instruction("B", lineNumber)
 {
     this->destination = destination;
 }

@@ -1,6 +1,6 @@
 #include "subi.h"
 
-SubI::SubI(QString destination, QString operator1, unsigned char integer) : Instruction("SUBI")
+SubI::SubI(QString destination, QString operator1, unsigned char integer, uint lineNumber) : Instruction("SUBI", lineNumber)
 {
     this->destination = destination;
     this->operator1 = operator1;
