@@ -12,6 +12,11 @@ public:
     {
         this->opcode = opcode;
         this->registerBank = RegisterBank::GetInstance();
+        this->isValid = true;
+    }
+
+    void invalidate() {
+        this->isValid = false;
     }
 
     virtual void runID() = 0;
@@ -21,6 +26,7 @@ public:
 protected:
     QString opcode;
     RegisterBank* registerBank;
+    bool isValid;
 };
 
 #endif // INSTRUCTION_H
