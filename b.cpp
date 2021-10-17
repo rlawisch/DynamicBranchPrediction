@@ -17,3 +17,8 @@ void B::wb()
 {
    ProgramCounter::GetInstance()->Set(this->destination);
 }
+
+bool B::nextInstructionsAreValid()
+{
+    return false;
+}

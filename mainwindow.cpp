@@ -3,6 +3,8 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
+    this->usePredictions = true;
+
     textEdit_ = new QPlainTextEdit(this);
     textEdit_->setStyleSheet("padding: 10px;");
 
@@ -84,7 +86,7 @@ void MainWindow::compileCode()
     delete fileParser;
 
     this->programMemory = new ProgramMemory(instructionList);
-    this->pipeline = new Pipeline(programMemory);
+    this->pipeline = new Pipeline(programMemory, this->usePredictions);
 
     compiledCode = textEdit_->toPlainText();
 

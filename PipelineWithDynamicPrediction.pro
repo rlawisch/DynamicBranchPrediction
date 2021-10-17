@@ -22,7 +22,8 @@ SOURCES += \
     registerbank.cpp \
     statistics.cpp \
     sub.cpp \
-    subi.cpp
+    subi.cpp \
+    twobitpredictor.cpp
 
 HEADERS += \
     add.h \
@@ -38,7 +39,8 @@ HEADERS += \
     registerbank.h \
     statistics.h \
     sub.h \
-    subi.h
+    subi.h \
+    twobitpredictor.h
 
 FORMS += \
     mainwindow.ui

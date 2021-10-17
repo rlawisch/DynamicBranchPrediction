@@ -5,6 +5,7 @@ Beq::Beq(QString operator1, QString operator2, int destination, uint lineNumber)
     this->destination = destination;
     this->operator1 = operator1;
     this->operator2 = operator2;
+    this->anticipatedBranch = false;
 }
 
 void Beq::id()
@@ -21,5 +22,29 @@ void Beq::ex()
 void Beq::wb()
 {
     if (this->shouldBranch)
-        ProgramCounter::GetInstance()->Set(this->destination);
+    {
+        if(!this->anticipatedBranch)
+            ProgramCounter::GetInstance()->Set(this->destination);
+
+        TwoBitPredictor::GetInstance()->incrementForLine(this->lineNumber);
+    }
+    else
+    {
+        TwoBitPredictor::GetInstance()->decrementForLine(this->lineNumber);
+    }
+}
+
+int Beq::getDestination()
+{
+    return this->destination;
+}
+
+void Beq::setAnticipatedBranch()
+{
+    this->anticipatedBranch = true;
+}
+
+bool Beq::nextInstructionsAreValid()
+{
+    return this->anticipatedBranch == this->shouldBranch;
 }
