@@ -48,6 +48,16 @@ public:
         return this->lineNumber;
     }
 
+    bool getValidity()
+    {
+        return this->isValid;
+    }
+
+    bool nextInstructionsAreValid()
+    {
+        return true;
+    }
+
 protected:  
     virtual void id() = 0;
     virtual void ex() = 0;

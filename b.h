@@ -8,6 +8,7 @@ class B : public Instruction
 {
 public:
     B(int destination, uint lineNumber);
+    bool nextInstructionsAreValid();
 
 private:
     void id();

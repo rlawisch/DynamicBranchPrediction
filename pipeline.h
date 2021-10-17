@@ -16,6 +16,7 @@ public:
 
 private:
     Instruction* getNextInstruction();
+    void checkInstructionsValidity();
 
     bool isRunning = false;
     bool usePredictions;
