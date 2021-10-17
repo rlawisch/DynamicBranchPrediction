@@ -9,6 +9,7 @@ RegisterBank::RegisterBank()
         QRegularExpression::CaseInsensitiveOption
     );
     this->addressValidator = new QRegularExpressionValidator(addressRegex, 0);
+    this->registers.clear();
 }
 
 RegisterBank* RegisterBank::GetInstance()
