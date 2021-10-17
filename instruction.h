@@ -15,14 +15,28 @@ public:
         this->isValid = true;
     }
 
+    virtual void id() = 0;
+    virtual void ex() = 0;
+    virtual void wb() = 0;
+
     void invalidate() {
         this->isValid = false;
     }
 
-    virtual void runID() = 0;
-    virtual void runEX() = 0;
-    virtual void runWB() = 0;
+    void runID() {
+        if (this->isValid)
+            this->id();
+    }
 
+    void runEX() {
+        if (this->isValid)
+            this->ex();
+    }
+
+    void runWB() {
+        if (this->isValid)
+            this->wb();
+    }
 protected:
     QString opcode;
     RegisterBank* registerBank;

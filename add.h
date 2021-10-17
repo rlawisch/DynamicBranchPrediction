@@ -7,9 +7,9 @@ class Add : public Instruction
 {
 public:
     Add(QString destination, QString operator1, QString operator2);
-    void runID();
-    void runEX();
-    void runWB();
+    void id();
+    void ex();
+    void wb();
 
 private:
     QString destination;

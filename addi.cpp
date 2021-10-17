@@ -7,17 +7,17 @@ AddI::AddI(QString destination, QString operator1, unsigned char integer) : Inst
     this->integer = integer;
 }
 
-void AddI::runID()
+void AddI::id()
 {
     this->operator1Content = registerBank->getRegister(operator1);
 }
 
-void AddI::runEX()
+void AddI::ex()
 {
     this->result = this->operator1Content + this->integer;
 }
 
-void AddI::runWB()
+void AddI::wb()
 {
     registerBank->setRegister(this->destination, this->result);
 }

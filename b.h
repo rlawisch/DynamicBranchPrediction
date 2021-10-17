@@ -8,9 +8,9 @@ class B : public Instruction
 {
 public:
     B(int destination);
-    void runID();
-    void runEX();
-    void runWB();
+    void id();
+    void ex();
+    void wb();
 
 private:
     int destination;

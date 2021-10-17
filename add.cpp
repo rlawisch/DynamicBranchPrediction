@@ -7,18 +7,18 @@ Add::Add(QString destination, QString operator1, QString operator2) : Instructio
     this->operator2 = operator2;
 }
 
-void Add::runID()
+void Add::id()
 {
     this->operator1Content = this->registerBank->getRegister(operator1);
     this->operator2Content = this->registerBank->getRegister(operator2);
 }
 
-void Add::runEX()
+void Add::ex()
 {
     this->result = this->operator1Content + this->operator2Content;
 }
 
-void Add::runWB()
+void Add::wb()
 {
     this->registerBank->setRegister(this->destination, this->result);
 }

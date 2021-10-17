@@ -7,17 +7,17 @@ SubI::SubI(QString destination, QString operator1, unsigned char integer) : Inst
     this->integer = integer;
 }
 
-void SubI::runID()
+void SubI::id()
 {
     this->operator1Content = registerBank->getRegister(operator1);
 }
 
-void SubI::runEX()
+void SubI::ex()
 {
     this->result = this->operator1Content - this->integer;
 }
 
-void SubI::runWB()
+void SubI::wb()
 {
     registerBank->setRegister(this->destination, this->result);
 }

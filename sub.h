@@ -7,9 +7,9 @@ class Sub : public Instruction
 {
 public:
     Sub(QString destination, QString operator1, QString operator2);
-    void runID();
-    void runEX();
-    void runWB();
+    void id();
+    void ex();
+    void wb();
 
 private:
     QString destination;

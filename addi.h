@@ -7,9 +7,9 @@ class AddI : public Instruction
 {
 public:
     AddI(QString destination, QString operator1, unsigned char integer);
-    void runID();
-    void runEX();
-    void runWB();
+    void id();
+    void ex();
+    void wb();
 
 private:
     QString destination;

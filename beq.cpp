@@ -7,18 +7,18 @@ Beq::Beq(QString operator1, QString operator2, int destination) : Instruction("B
     this->operator2 = operator2;
 }
 
-void Beq::runID()
+void Beq::id()
 {
     this->operator1Content = registerBank->getRegister(operator1);
     this->operator2Content = registerBank->getRegister(operator2);
 }
 
-void Beq::runEX()
+void Beq::ex()
 {
     this->shouldBranch = this->operator1Content == this->operator2Content;
 }
 
-void Beq::runWB()
+void Beq::wb()
 {
     if (this->shouldBranch)
         ProgramCounter::GetInstance()->Set(this->destination);

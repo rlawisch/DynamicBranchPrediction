@@ -8,9 +8,9 @@ class Beq : public Instruction
 {
 public:
     Beq(QString operator1, QString operator2, int destination);
-    void runID();
-    void runEX();
-    void runWB();
+    void id();
+    void ex();
+    void wb();
 
 private:
     QString operator1, operator2;

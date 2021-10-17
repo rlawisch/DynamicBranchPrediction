@@ -5,15 +5,15 @@ B::B(int destination) : Instruction("B")
     this->destination = destination;
 }
 
-void B::runID()
+void B::id()
 {
 }
 
-void B::runEX()
+void B::ex()
 {
 }
 
-void B::runWB()
+void B::wb()
 {
    ProgramCounter::GetInstance()->Set(this->destination);
 }
