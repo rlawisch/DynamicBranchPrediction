@@ -8,6 +8,7 @@ class Beq : public Instruction
 {
 public:
     Beq(QString operator1, QString operator2, int destination, uint lineNumber);
+    int getDestination();
 
 private:
     void id();

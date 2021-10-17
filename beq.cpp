@@ -23,3 +23,8 @@ void Beq::wb()
     if (this->shouldBranch)
         ProgramCounter::GetInstance()->Set(this->destination);
 }
+
+int Beq::getDestination()
+{
+    return this->destination;
+}
