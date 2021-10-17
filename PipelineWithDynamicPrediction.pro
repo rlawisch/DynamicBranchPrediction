@@ -20,6 +20,7 @@ SOURCES += \
     programcounter.cpp \
     programmemory.cpp \
     registerbank.cpp \
+    statistics.cpp \
     sub.cpp \
     subi.cpp
 
@@ -35,6 +36,7 @@ HEADERS += \
     programcounter.h \
     programmemory.h \
     registerbank.h \
+    statistics.h \
     sub.h \
     subi.h
 

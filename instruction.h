@@ -4,6 +4,7 @@
 #include <QString>
 
 #include "registerbank.h"
+#include "statistics.h"
 
 class Instruction
 {
@@ -22,6 +23,8 @@ public:
 
     void invalidate() {
         this->isValid = false;
+
+        Statistics::GetInstance()->SetInstruction(this->opcode, false);
     }
 
     void runID() {
@@ -36,7 +39,10 @@ public:
 
     void runWB() {
         if (this->isValid)
+        {
             this->wb();
+            Statistics::GetInstance()->SetInstruction(this->opcode, true);
+        }
     }
 protected:
     QString opcode;
