@@ -26,6 +26,7 @@ QList<Instruction*> FileParser::parse(QString code)
             Instruction* instructionRead = this->parseLine(line, lineCounter);
             instructionList.append(instructionRead);
         }
+        lineCounter++;
     }
 
     return instructionList;
