@@ -8,10 +8,10 @@
 class Instruction
 {
 public:
-    Instruction(QString opcode, RegisterBank* registerBank)
+    Instruction(QString opcode)
     {
         this->opcode = opcode;
-        this->registerBank = registerBank;
+        this->registerBank = RegisterBank::GetInstance();
     }
 
     virtual void runID() = 0;

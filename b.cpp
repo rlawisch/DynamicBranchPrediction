@@ -1,6 +1,6 @@
 #include "b.h"
 
-B::B(int destination, RegisterBank* registerBank) : Instruction("B", registerBank)
+B::B(int destination) : Instruction("B")
 {
     this->destination = destination;
 }
@@ -15,5 +15,5 @@ void B::runEX()
 
 void B::runWB()
 {
-   ProgramCounter::GetInstance().Set(this->destination);
+   ProgramCounter::GetInstance()->Set(this->destination);
 }

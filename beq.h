@@ -7,7 +7,7 @@
 class Beq : public Instruction
 {
 public:
-    Beq(QString operator1, QString operator2, int destination, RegisterBank* registerBank);
+    Beq(QString operator1, QString operator2, int destination);
     void runID();
     void runEX();
     void runWB();

@@ -1,13 +1,17 @@
 #include "programcounter.h"
 
+ProgramCounter* ProgramCounter::instance;
+
 ProgramCounter::ProgramCounter()
 {
     this->pc = 0;
 }
 
-ProgramCounter& ProgramCounter::GetInstance()
+ProgramCounter* ProgramCounter::GetInstance()
 {
-    return pc_instance;
+    if (!instance)
+        instance = new ProgramCounter;
+    return instance;
 }
 
 int ProgramCounter::Get()

@@ -1,5 +1,7 @@
 #include "registerbank.h"
 
+RegisterBank* RegisterBank::instance;
+
 RegisterBank::RegisterBank()
 {
     QRegularExpression addressRegex(
@@ -7,6 +9,13 @@ RegisterBank::RegisterBank()
         QRegularExpression::CaseInsensitiveOption
     );
     this->addressValidator = new QRegularExpressionValidator(addressRegex, 0);
+}
+
+RegisterBank* RegisterBank::GetInstance()
+{
+    if (!instance)
+        instance = new RegisterBank;
+    return instance;
 }
 
 unsigned char RegisterBank::getRegister(QString address)

@@ -20,7 +20,7 @@
 class FileParser
 {
 public:
-    FileParser(RegisterBank *registerBank);
+    FileParser();
     QList<Instruction*> parse(QString fileName);
 
 private:
@@ -28,7 +28,6 @@ private:
     Instruction* parseLine(QString textLine);
 
     QRegularExpressionValidator *validator;
-    RegisterBank *registerBank;
 };
 
 #endif // FILEPARSER_H

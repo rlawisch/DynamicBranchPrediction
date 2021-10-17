@@ -6,7 +6,7 @@
 class AddI : public Instruction
 {
 public:
-    AddI(QString destination, QString operator1, unsigned char integer, RegisterBank* registerBank);
+    AddI(QString destination, QString operator1, unsigned char integer);
     void runID();
     void runEX();
     void runWB();

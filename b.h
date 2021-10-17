@@ -7,7 +7,7 @@
 class B : public Instruction
 {
 public:
-    B(int destination, RegisterBank* registerBank);
+    B(int destination);
     void runID();
     void runEX();
     void runWB();

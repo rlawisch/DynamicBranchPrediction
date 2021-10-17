@@ -1,6 +1,6 @@
 #include "add.h"
 
-Add::Add(QString destination, QString operator1, QString operator2, RegisterBank* registerBank) : Instruction("ADD", registerBank)
+Add::Add(QString destination, QString operator1, QString operator2) : Instruction("ADD")
 {
     this->destination = destination;
     this->operator1 = operator1;
@@ -9,8 +9,8 @@ Add::Add(QString destination, QString operator1, QString operator2, RegisterBank
 
 void Add::runID()
 {
-    this->operator1Content = registerBank->getRegister(operator1);
-    this->operator2Content = registerBank->getRegister(operator2);
+    this->operator1Content = this->registerBank->getRegister(operator1);
+    this->operator2Content = this->registerBank->getRegister(operator2);
 }
 
 void Add::runEX()
@@ -20,5 +20,5 @@ void Add::runEX()
 
 void Add::runWB()
 {
-    registerBank->setRegister(this->destination, this->result);
+    this->registerBank->setRegister(this->destination, this->result);
 }

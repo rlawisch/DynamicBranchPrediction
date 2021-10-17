@@ -1,13 +1,12 @@
 #include "fileparser.h"
 
-FileParser::FileParser(RegisterBank *registerBank)
+FileParser::FileParser()
 {
     QRegularExpression lineRegex(
         "\\s*((ADD|SUB)\\s+\\$t\\d(\\s*,\\s*\\$t\\d){2}|(ADDI|SUBI|BEQ)\\s+\\$t\\d\\s*,\\s*\\$t\\d\\s*,\\s*\\d|B\\s+-?\\d)\\s*[^\\n]*",
         QRegularExpression::CaseInsensitiveOption
     );
     this->validator = new QRegularExpressionValidator(lineRegex, 0);
-    this->registerBank = registerBank;
 }
 
 QList<Instruction*> FileParser::parse(QString code)
@@ -44,27 +43,27 @@ Instruction* FileParser::parseLine(QString textLine)
 
     if(tokens[0].toUpper().startsWith("ADDI"))
     {
-        return new AddI(tokens[1], tokens[2], tokens[3].toInt(), this->registerBank);
+        return new AddI(tokens[1], tokens[2], tokens[3].toInt());
     }
     else if(tokens[0].toUpper().startsWith("ADD"))
     {
-        return new Add(tokens[1], tokens[2], tokens[3], this->registerBank);
+        return new Add(tokens[1], tokens[2], tokens[3]);
     }
     else if(tokens[0].toUpper().startsWith("SUBI"))
     {
-        return new SubI(tokens[1], tokens[2], tokens[3].toInt(), this->registerBank);
+        return new SubI(tokens[1], tokens[2], tokens[3].toInt());
     }
     else if(tokens[0].toUpper().startsWith("SUB"))
     {
-        return new Sub(tokens[1], tokens[2], tokens[3], this->registerBank);
+        return new Sub(tokens[1], tokens[2], tokens[3]);
     }
     else if(tokens[0].toUpper().startsWith("BEQ"))
     {
-        return new Beq(tokens[1], tokens[2], tokens[3].toInt(), this->registerBank);
+        return new Beq(tokens[1], tokens[2], tokens[3].toInt());
     }
     else if(tokens[0].toUpper().startsWith("B"))
     {
-        return new B(tokens[1].toInt(), this->registerBank);
+        return new B(tokens[1].toInt());
     }
 
     return nullptr;

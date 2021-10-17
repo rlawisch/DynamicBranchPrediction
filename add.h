@@ -6,7 +6,7 @@
 class Add : public Instruction
 {
 public:
-    Add(QString destination, QString operator1, QString operator2, RegisterBank* registerBank);
+    Add(QString destination, QString operator1, QString operator2);
     void runID();
     void runEX();
     void runWB();

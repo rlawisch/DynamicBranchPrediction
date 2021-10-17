@@ -1,6 +1,6 @@
 #include "beq.h"
 
-Beq::Beq(QString operator1, QString operator2, int destination, RegisterBank* registerBank) : Instruction("BEQ", registerBank)
+Beq::Beq(QString operator1, QString operator2, int destination) : Instruction("BEQ")
 {
     this->destination = destination;
     this->operator1 = operator1;
@@ -21,5 +21,5 @@ void Beq::runEX()
 void Beq::runWB()
 {
     if (this->shouldBranch)
-            ProgramCounter::GetInstance().Set(this->destination);
+        ProgramCounter::GetInstance()->Set(this->destination);
 }

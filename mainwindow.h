@@ -39,7 +39,6 @@ public slots:
 private:
     QPlainTextEdit *textEdit_;
     ProgramMemory* programMemory;
-    RegisterBank *registerBank;
     Pipeline* pipeline;
 
     QMap<QString, QAction*> buttons;

@@ -1,6 +1,6 @@
 #include "sub.h"
 
-Sub::Sub(QString destination, QString operator1, QString operator2, RegisterBank* registerBank) : Instruction("SUB", registerBank)
+Sub::Sub(QString destination, QString operator1, QString operator2) : Instruction("SUB")
 {
     this->destination = destination;
     this->operator1 = operator1;

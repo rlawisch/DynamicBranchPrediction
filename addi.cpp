@@ -1,6 +1,6 @@
 #include "addi.h"
 
-AddI::AddI(QString destination, QString operator1, unsigned char integer, RegisterBank* registerBank) : Instruction("ADDI", registerBank)
+AddI::AddI(QString destination, QString operator1, unsigned char integer) : Instruction("ADDI")
 {
     this->destination = destination;
     this->operator1 = operator1;

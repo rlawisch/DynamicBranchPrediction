@@ -78,8 +78,7 @@ void MainWindow::compileCode()
 {
     qDebug() << "Compiling code...";
 
-    this->registerBank = new RegisterBank();
-    FileParser *fileParser = new FileParser(this->registerBank);
+    FileParser *fileParser = new FileParser();
 
     QList<Instruction*> instructionList = fileParser->parse(textEdit_->toPlainText());
     delete fileParser;
