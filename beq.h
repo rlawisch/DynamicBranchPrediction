@@ -8,11 +8,12 @@ class Beq : public Instruction
 {
 public:
     Beq(QString operator1, QString operator2, int destination, uint lineNumber);
+
+private:
     void id();
     void ex();
     void wb();
 
-private:
     QString operator1, operator2;
     int destination;
     unsigned char operator1Content, operator2Content;

@@ -7,11 +7,12 @@ class Sub : public Instruction
 {
 public:
     Sub(QString destination, QString operator1, QString operator2, uint lineNumber);
+
+private:
     void id();
     void ex();
     void wb();
 
-private:
     QString destination;
     QString operator1, operator2;
     unsigned char operator1Content, operator2Content;

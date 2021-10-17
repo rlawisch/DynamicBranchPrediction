@@ -8,11 +8,12 @@ class B : public Instruction
 {
 public:
     B(int destination, uint lineNumber);
+
+private:
     void id();
     void ex();
     void wb();
 
-private:
     int destination;
 };
 
