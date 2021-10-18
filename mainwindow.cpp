@@ -18,25 +18,27 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     QAction *compile = toolBar->addAction(QIcon(":/images/compile"), "Compile"   );
     QAction *run     = toolBar->addAction(QIcon(":/images/run"    ), "Run"       );
     toolBar->addSeparator();
-    QAction *stats   = toolBar->addAction(QIcon(":/images/stats"  ), "Statistics");
+    QAction *prediction = toolBar->addAction(QIcon(":images/setPrediction"), "Set Prediction");
 
     run->setEnabled(false);
+    prediction->setCheckable(true);
 
-    buttons.insert("save"   , save   );
-    buttons.insert("load"   , load   );
-    buttons.insert("compile", compile);
-    buttons.insert("run"    , run    );
-    buttons.insert("stats"  , stats  );
+    buttons.insert("save"      , save      );
+    buttons.insert("load"      , load      );
+    buttons.insert("compile"   , compile   );
+    buttons.insert("run"       , run       );
+    buttons.insert("prediction", prediction);
 
-    connect(save   , SIGNAL(triggered()), this, SLOT(saveToFile() ));
-    connect(load   , SIGNAL(triggered()), this, SLOT(loadFile()   ));
-    connect(compile, SIGNAL(triggered()), this, SLOT(compileCode()));
-    connect(run    , SIGNAL(triggered()), this, SLOT(runCode()    ));
-    connect(stats  , SIGNAL(triggered()), this, SLOT(showStats()  ));
+    connect(save      , SIGNAL(triggered(    )), this, SLOT(saveToFile()   ));
+    connect(load      , SIGNAL(triggered(    )), this, SLOT(loadFile()     ));
+    connect(compile   , SIGNAL(triggered(    )), this, SLOT(compileCode()  ));
+    connect(run       , SIGNAL(triggered(    )), this, SLOT(runCode()      ));
+    connect(prediction, SIGNAL(toggled  (bool)), this, SLOT(setPrediction(bool)));
 
     connect(textEdit_, SIGNAL(textChanged()), this, SLOT(updateRunButton()));
 
     this->setCentralWidget(textEdit_);
+    this->setWindowTitle("BRTL Pipeline");
     this->addToolBar(toolBar);
 }
 
@@ -98,6 +100,16 @@ void MainWindow::compileCode()
 void MainWindow::runCode()
 {
     this->pipeline->run();
+
+    StatsDialog *dialog = new StatsDialog(this);
+
+    dialog->exec();
+}
+
+void MainWindow::setPrediction(bool checked)
+{
+    this->usePredictions = checked;
+    qDebug() << this->usePredictions;
 }
 
 void MainWindow::updateRunButton()
@@ -106,11 +118,4 @@ void MainWindow::updateRunButton()
         buttons["run"]->setEnabled(true);
     else
         buttons["run"]->setEnabled(false);
-}
-
-void MainWindow::showStats()
-{
-    QList<InstructionInstance> instructions = this->statistics->GetInstructions();
-    int instructionsAmount = this->statistics->GetInstructionAmount();
-    int invalidInstructions = this->statistics->GetInvalidInstructionAmount();
 }
