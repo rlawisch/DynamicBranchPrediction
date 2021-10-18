@@ -21,6 +21,7 @@ SOURCES += \
     programmemory.cpp \
     registerbank.cpp \
     statistics.cpp \
+    statsdialog.cpp \
     sub.cpp \
     subi.cpp \
     twobitpredictor.cpp
@@ -38,6 +39,7 @@ HEADERS += \
     programmemory.h \
     registerbank.h \
     statistics.h \
+    statsdialog.h \
     sub.h \
     subi.h \
     twobitpredictor.h
