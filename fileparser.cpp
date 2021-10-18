@@ -21,7 +21,7 @@ QList<Instruction*> FileParser::parse(QString code)
     while(it.hasNext())
     {
         QString line = it.next();
-        if(lineCounter && (this->isValidLine(line)))
+        if(this->isValidLine(line))
         {
             Instruction* instructionRead = this->parseLine(line, lineCounter);
             instructionList.append(instructionRead);

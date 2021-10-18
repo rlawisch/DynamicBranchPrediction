@@ -9,8 +9,6 @@ Pipeline::Pipeline(ProgramMemory* programMemory, bool usePredictions)
 
 void Pipeline::step()
 {
-    this->programCounter->Add(1);
-
     if(this->instructionWB != nullptr)
     {
         this->instructionWB->runWB();
@@ -35,6 +33,8 @@ void Pipeline::step()
     this->instructionID = this->instructionIF;
 
     this->instructionIF = this->getNextInstruction();
+
+    this->programCounter->Add(1);
 }
 
 void Pipeline::run()
@@ -73,9 +73,13 @@ void Pipeline::checkInstructionsValidity()
     Beq* beq = (Beq*) this->instructionWB;
     if (!beq->nextInstructionsAreValid())
     {
-        this->instructionMEM->invalidate();
-        this->instructionEX->invalidate();
-        this->instructionID->invalidate();
-        this->instructionIF->invalidate();
+        if (this->instructionMEM)
+            this->instructionMEM->invalidate();
+        if (this->instructionEX)
+            this->instructionEX->invalidate();
+        if (this->instructionID)
+            this->instructionID->invalidate();
+        if (this->instructionIF)
+            this->instructionIF->invalidate();
     }
 }
