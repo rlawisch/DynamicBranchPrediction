@@ -38,7 +38,6 @@ private:
     QPlainTextEdit *textEdit_;
     ProgramMemory* programMemory;
     Pipeline* pipeline;
-    Statistics* statistics;
     bool usePredictions;
 
     QMap<QString, QAction*> buttons;
