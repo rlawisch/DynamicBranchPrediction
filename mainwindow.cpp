@@ -4,7 +4,6 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     this->usePredictions = true;
-    this->statistics = Statistics::GetInstance();
 
     textEdit_ = new QPlainTextEdit(this);
     textEdit_->setStyleSheet("padding: 10px;");
@@ -22,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     run->setEnabled(false);
     prediction->setCheckable(true);
+    prediction->setChecked(true);
 
     buttons.insert("save"      , save      );
     buttons.insert("load"      , load      );
