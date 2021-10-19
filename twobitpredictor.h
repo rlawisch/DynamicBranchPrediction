@@ -14,6 +14,8 @@ public:
     void decrementForLine(uint lineNumber);
     bool shouldBranchForLine(uint lineNumber);
 
+    void Reset();
+
 private:
     // private constructor to ensure singleton
     TwoBitPredictor();

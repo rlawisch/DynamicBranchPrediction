@@ -81,6 +81,12 @@ int Statistics::GetInvalidInstructionAmount()
     return this->invalidInstructionAmount;
 }
 
+void Statistics::Reset()
+{
+    this->allInstructions.clear();
+    this->resetInstructionCounter();
+}
+
 void Statistics::resetInstructionCounter()
 {
     this->validInstructionAmount = 0;

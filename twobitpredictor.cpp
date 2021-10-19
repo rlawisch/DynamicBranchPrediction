@@ -30,3 +30,8 @@ bool TwoBitPredictor::shouldBranchForLine(uint lineNumber)
 {
     return this->counters[lineNumber] >= 2;
 }
+
+void TwoBitPredictor::Reset()
+{
+    this->counters.clear();
+}

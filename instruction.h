@@ -19,9 +19,9 @@ public:
 
     void invalidate()
     {
+        Statistics::GetInstance()->SetInstruction(this->opcode, false);
         this->isValid = false;
 
-        Statistics::GetInstance()->SetInstruction(this->opcode, false);
     }
 
     void runID() {

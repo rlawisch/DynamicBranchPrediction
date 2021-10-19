@@ -10,10 +10,12 @@
 
 #include <fileparser.h>
 #include <programmemory.h>
+#include <programcounter.h>
 #include <registerbank.h>
 #include <pipeline.h>
 #include <statistics.h>
 #include <statsdialog.h>
+#include <twobitpredictor.h>
 
 class MainWindow : public QMainWindow
 {
@@ -37,7 +39,11 @@ public slots:
 private:
     QPlainTextEdit *textEdit_;
     ProgramMemory* programMemory;
+    ProgramCounter* programCounter;
+    RegisterBank* registerBank;
     Pipeline* pipeline;
+    Statistics* statistics;
+    TwoBitPredictor* twoBitPredictor;
     bool usePredictions;
 
     QMap<QString, QAction*> buttons;

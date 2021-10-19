@@ -4,6 +4,9 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     this->usePredictions = true;
+    this->statistics = Statistics::GetInstance();
+    this->programCounter = ProgramCounter::GetInstance();
+    this->twoBitPredictor = TwoBitPredictor::GetInstance();
 
     textEdit_ = new QPlainTextEdit(this);
     textEdit_->setStyleSheet("padding: 10px;");
@@ -84,6 +87,10 @@ void MainWindow::compileCode()
 {
     qDebug() << "Compiling code...";
 
+    this->programCounter->Reset();
+    this->statistics->Reset();
+    this->twoBitPredictor->Reset();
+
     FileParser *fileParser = new FileParser();
 
     QList<Instruction*> instructionList = fileParser->parse(textEdit_->toPlainText());
@@ -99,6 +106,7 @@ void MainWindow::compileCode()
 
 void MainWindow::runCode()
 {
+
     this->pipeline->run();
 
     StatsDialog *dialog = new StatsDialog(this);

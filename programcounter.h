@@ -19,7 +19,8 @@ private:
     // private constructor to ensure singleton
     ProgramCounter();
     static ProgramCounter *instance;
-    int pc;
+
+    int pc = 0;
 };
 
 #endif // PROGRAMCOUNTER_H

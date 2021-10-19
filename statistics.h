@@ -17,7 +17,6 @@ public:
     Statistics(const Statistics&) = delete;
     static Statistics* GetInstance();
 
-    // utility functions to retrieve and modify pc
     void SetInstruction(QString opcode, bool isValid);
 
     QList<InstructionInstance> GetInstructions();
@@ -28,6 +27,7 @@ public:
     int GetValidInstructionAmount();
     int GetInvalidInstructionAmount();
 
+    void Reset();
 private:
     // private constructor to ensure singleton
     Statistics();
